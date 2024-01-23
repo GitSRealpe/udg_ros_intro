@@ -1,7 +1,8 @@
 <launch>
     <!-- Arguments -->
     <arg name="robot_name" default="tutobot"/>
-    <arg name="robot_xacro" default="$(find udg_ros_intro)/urdf/tutobot.urdf.xacro"/>
+    <!-- <arg name="robot_xacro" default="$(find udg_ros_intro)/urdf/tutobot.urdf.xacro"/> -->
+    <arg name="robot_xacro" default="$(find udg_ros_intro)/urdf/tutobot_gripper.urdf.xacro"/>
 
     <!-- robot to world -->
     <node name="worldbase" pkg="tf" type="static_transform_publisher" args="0 0 0 0 0 0 world $(arg robot_name)/base_link 100"/>
