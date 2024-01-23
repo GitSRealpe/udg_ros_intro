@@ -1,0 +1,213 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <!-- define colors -->
+    <material name="green">
+        <color rgba="0 1.0 0 1"/>
+    </material>
+
+    <material name="blue">
+        <color rgba="0 0 1 1"/>
+    </material>
+
+    <xacro:macro name="arm_namespace" params="prefix">
+
+        <link name="${prefix}/base_link">
+            <visual>
+                <geometry>
+                    <cylinder radius="0.16" length="0.1"/>
+                </geometry>
+                <material name="blue"/>
+                <origin xyz="0 0 0.05" rpy="0 0 0"/>
+            </visual>
+            <collision>
+                <geometry>
+                    <cylinder radius="0.16" length="0.1"/>
+                </geometry>
+                <origin xyz="0 0 0.05" rpy="0 0 0"/>
+            </collision>
+        </link>
+
+        <link name="${prefix}/link1">
+            <visual name="left">
+                <geometry>
+                    <box size="0.1 0.1 0.2"/>
+                </geometry>
+                <material name="green"/>
+                <origin xyz="0 0.075 0" rpy="0 0 0"/>
+            </visual>
+
+            <visual name="right">
+                <geometry>
+                    <box size="0.1 0.1 0.2"/>
+                </geometry>
+                <origin xyz="0 -0.075 0" rpy="0 0 0"/>
+            </visual>
+
+            <collision name="left">
+                <geometry>
+                    <box size="0.1 0.1 0.2"/>
+                </geometry>
+                <origin xyz="0 0.075 0" rpy="0 0 0"/>
+            </collision>
+
+            <collision name="right">
+                <geometry>
+                    <box size="0.1 0.1 0.2"/>
+                </geometry>
+                <origin xyz="0 -0.075 0" rpy="0 0 0"/>
+            </collision>
+        </link>
+
+        <link name="${prefix}/link2">
+            <visual name="bar">
+                <geometry>
+                    <box size="0.05 0.05 0.4"/>
+                </geometry>
+                <origin xyz="0.0 0 0.2" rpy="0 0 0"/>
+            </visual>
+
+            <collision name="bar">
+                <geometry>
+                    <box size="0.05 0.05 0.4"/>
+                </geometry>
+                <origin xyz="0.0 0 0.2" rpy="0 0 0"/>
+            </collision>
+        </link>
+
+        <link name="${prefix}/link3">
+            <visual name="bar">
+                <geometry>
+                    <box size="0.05 0.05 0.3"/>
+                </geometry>
+                <origin xyz="0.15 0 0" rpy="0 1.57 0"/>
+            </visual>
+
+            <visual name="motor">
+                <geometry>
+                    <cylinder radius="0.05" length="0.1"/>
+                </geometry>
+                <material name="blue"/>
+                <origin xyz="0 0 0" rpy="1.57 0 0"/>
+            </visual>
+
+            <collision name="bar">
+                <geometry>
+                    <box size="0.05 0.05 0.3"/>
+                </geometry>
+                <origin xyz="0.15 0 0" rpy="0 1.57 0"/>
+            </collision>
+
+            <collision name="motor">
+                <geometry>
+                    <cylinder radius="0.05" length="0.1"/>
+                </geometry>
+                <origin xyz="0 0 0" rpy="1.57 0 0"/>
+            </collision>
+        </link>
+
+        <link name="${prefix}/link4">
+            <visual name="bar">
+                <geometry>
+                    <box size="0.05 0.05 0.15"/>
+                </geometry>
+                <origin xyz="0.075 0 0" rpy="0 1.57 0"/>
+            </visual>
+
+            <visual name="motor">
+                <geometry>
+                    <cylinder radius="0.05" length="0.1"/>
+                </geometry>
+                <material name="blue"/>
+                <origin xyz="0 0 0" rpy="0 1.57 0"/>
+            </visual>
+
+            <collision name="bar">
+                <geometry>
+                    <box size="0.05 0.05 0.15"/>
+                </geometry>
+                <origin xyz="0.075 0 0" rpy="0 1.57 0"/>
+            </collision>
+
+            <collision name="motor">
+                <geometry>
+                    <cylinder radius="0.05" length="0.1"/>
+                </geometry>
+                <origin xyz="0 0 0" rpy="0 1.57 0"/>
+            </collision>
+        </link>
+
+        <link name="${prefix}/link5">
+            <visual name="bar">
+                <geometry>
+                    <box size="0.05 0.05 0.1"/>
+                </geometry>
+                <origin xyz="0.05 0 0" rpy="0 1.57 0"/>
+            </visual>
+
+            <visual name="motor">
+                <geometry>
+                    <cylinder radius="0.05" length="0.1"/>
+                </geometry>
+                <material name="blue"/>
+                <origin xyz="0 0 0" rpy="1.57 0 0"/>
+            </visual>
+
+            <collision name="bar">
+                <geometry>
+                    <box size="0.05 0.05 0.1"/>
+                </geometry>
+                <origin xyz="0.05 0 0" rpy="0 1.57 0"/>
+            </collision>
+
+            <collision name="motor">
+                <geometry>
+                    <cylinder radius="0.05" length="0.1"/>
+                </geometry>
+                <material name="blue"/>
+                <origin xyz="0 0 0" rpy="1.57 0 0"/>
+            </collision>
+        </link>
+
+        <joint name="${prefix}/joint1" type="revolute">
+            <parent link="${prefix}/base_link"/>
+            <child link="${prefix}/link1"/>
+            <origin xyz="0 0 0.2" rpy="0 0 0"/>
+            <axis xyz="0 0 1"/>
+            <limit lower="-3.1" upper="3.1" velocity="0.5" effort="1.0"/>
+        </joint>
+
+        <joint name="${prefix}/joint2" type="revolute">
+            <parent link="${prefix}/link1"/>
+            <child link="${prefix}/link2"/>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <axis xyz="0 1 0"/>
+            <limit lower="-1.57" upper="1.57" velocity="0.5" effort="1.0"/>
+        </joint>
+
+        <joint name="${prefix}/joint3" type="revolute">
+            <parent link="${prefix}/link2"/>
+            <child link="${prefix}/link3"/>
+            <origin xyz="0 0 0.4" rpy="0 0 0"/>
+            <axis xyz="0 1 0"/>
+            <limit lower="-1.57" upper="1.57" velocity="0.5" effort="1.0"/>
+        </joint>
+
+        <joint name="${prefix}/joint4" type="revolute">
+            <parent link="${prefix}/link3"/>
+            <child link="${prefix}/link4"/>
+            <origin xyz="0.3 0 0" rpy="0 0 0"/>
+            <axis xyz="1 0 0"/>
+            <limit lower="-1.57" upper="1.57" velocity="0.5" effort="1.0"/>
+        </joint>
+
+        <joint name="${prefix}/joint5" type="revolute">
+            <parent link="${prefix}/link4"/>
+            <child link="${prefix}/link5"/>
+            <origin xyz="0.15 0 0" rpy="0 0 0"/>
+            <axis xyz="0 1 0"/>
+            <limit lower="-1.57" upper="1.57" velocity="0.5" effort="1.0"/>
+        </joint>
+
+    </xacro:macro>
+</robot>

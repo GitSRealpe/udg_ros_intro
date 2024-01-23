@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<robot name="tutobot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:arg name="robot_namespace" default="tutobot"/>
+
+    <link name="$(arg robot_namespace)/dual_base_link">
+        <visual>
+            <geometry>
+                <mesh filename="package://udg_ros_intro/resources/meshes/dualbase.dae"/>
+            </geometry>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="package://udg_ros_intro/resources/meshes/dualbase.dae"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <!-- Include manipulator -->
+    <xacro:include filename="$(find udg_ros_intro)/urdf/tutobot.macro.xacro"/>
+    <xacro:arm_namespace prefix="$(arg robot_namespace)_left"/>
+    <xacro:arm_namespace prefix="$(arg robot_namespace)_right"/>
+
+    <joint name="$(arg robot_namespace)/fixed_joint_left" type="fixed">
+        <parent link="$(arg robot_namespace)/dual_base_link"/>
+        <child link="$(arg robot_namespace)_left/base_link"/>
+        <origin rpy="-1.0472 0.0 0.0" xyz="0.0 0.18246 0.17679"/>
+    </joint>
+
+    <joint name="$(arg robot_namespace)/fixed_joint_right" type="fixed">
+        <parent link="$(arg robot_namespace)/dual_base_link"/>
+        <child link="$(arg robot_namespace)_right/base_link"/>
+        <origin rpy="1.0472 0.0 0.0" xyz="0.0 -0.18246 0.17679"/>
+    </joint>
+
+</robot>

@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<robot name="tutobot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:arg name="robot_namespace" default="robot"/>
+
+    <!-- Include manipulator -->
+    <xacro:include filename="$(find udg_ros_intro)/urdf/tutobot.macro.xacro"/>
+    <xacro:arm_namespace prefix="$(arg robot_namespace)"/>
+
+</robot>
