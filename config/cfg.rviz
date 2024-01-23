@@ -5,7 +5,6 @@ Panels:
     Property Tree Widget:
       Expanded:
         - /RobotModel1
-        - /TF1/Frames1
       Splitter Ratio: 0.5
     Tree Height: 795
   - Class: rviz/Tool Properties
@@ -53,67 +52,32 @@ Visualization Manager:
         Expand Link Details: false
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
-        tutobot/dual_base_link:
+        tutobot/base_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        tutobot_left/base_link:
+        tutobot/link1:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        tutobot_left/link1:
+        tutobot/link2:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        tutobot_left/link2:
+        tutobot/link3:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        tutobot_left/link3:
+        tutobot/link4:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        tutobot_left/link4:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        tutobot_left/link5:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        tutobot_right/base_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        tutobot_right/link1:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        tutobot_right/link2:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        tutobot_right/link3:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        tutobot_right/link4:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        tutobot_right/link5:
+        tutobot/link5:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -124,23 +88,6 @@ Visualization Manager:
       Update Interval: 0
       Value: true
       Visual Enabled: true
-    - Class: rviz/TF
-      Enabled: false
-      Filter (blacklist): ""
-      Filter (whitelist): ""
-      Frame Timeout: 15
-      Frames:
-        All Enabled: true
-      Marker Alpha: 1
-      Marker Scale: 1
-      Name: TF
-      Show Arrows: true
-      Show Axes: true
-      Show Names: true
-      Tree:
-        {}
-      Update Interval: 0
-      Value: false
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
