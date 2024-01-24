@@ -5,9 +5,9 @@
     <arg name="robot_xacro" default="$(find udg_ros_intro)/urdf/tutobot.urdf.xacro"/>
 
     <!-- robot to world -->
-    <node name="worldbase1" pkg="tf" type="static_transform_publisher" args="0 1 0 0 0 0 world robot1_tf/$(arg robot1_name)/base_link 100"/>
+    <node name="worldbase1" pkg="tf" type="static_transform_publisher" args="0 0.5 0 0 0 0 world robot1_tf/$(arg robot1_name)/base_link 100"/>
 
-    <node name="worldbase2" pkg="tf" type="static_transform_publisher" args="0 -1 0 0 0 0 world robot2_tf/$(arg robot2_name)/base_link 100"/>
+    <node name="worldbase2" pkg="tf" type="static_transform_publisher" args="0 -0.5 0 0 0 0 world robot2_tf/$(arg robot2_name)/base_link 100"/>
 
     <group ns="$(arg robot1_name)">
         <param name="tf_prefix" value="robot1_tf"/>
@@ -34,7 +34,7 @@
     </group>
 
     <!-- Start rviz -->
-    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find udg_ros_intro)/config/cfg.rviz"/>
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find udg_ros_intro)/config/multibotcfg.rviz"/>
     <!-- <node name="rviz" pkg="rviz" type="rviz"/> -->
 
 
