@@ -1,0 +1,41 @@
+<launch>
+    <!-- Arguments -->
+    <arg name="robot1_name" default="tutobot1"/>
+    <arg name="robot2_name" default="tutobot2"/>
+    <arg name="robot_xacro" default="$(find udg_ros_intro)/urdf/tutobot.urdf.xacro"/>
+
+    <!-- robot to world -->
+    <node name="worldbase1" pkg="tf" type="static_transform_publisher" args="0 1 0 0 0 0 world robot1_tf/$(arg robot1_name)/base_link 100"/>
+
+    <node name="worldbase2" pkg="tf" type="static_transform_publisher" args="0 -1 0 0 0 0 world robot2_tf/$(arg robot2_name)/base_link 100"/>
+
+    <group ns="$(arg robot1_name)">
+        <param name="tf_prefix" value="robot1_tf"/>
+        <!-- Robot description -->
+        <param name="robot_description" command="$(find xacro)/xacro '$(arg robot_xacro)' robot_namespace:=$(arg robot1_name)"/>
+
+        <!-- Robot state publisher -->
+        <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" output="screen"/>
+
+        <!-- Start joint and robot state publisher-->
+        <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui"/>
+    </group>
+
+    <group ns="$(arg robot2_name)">
+        <param name="tf_prefix" value="robot2_tf"/>
+        <!-- Robot description -->
+        <param name="robot_description" command="$(find xacro)/xacro '$(arg robot_xacro)' robot_namespace:=$(arg robot2_name)"/>
+
+        <!-- Robot state publisher -->
+        <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" output="screen"/>
+
+        <!-- Start joint and robot state publisher-->
+        <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui"/>
+    </group>
+
+    <!-- Start rviz -->
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find udg_ros_intro)/config/cfg.rviz"/>
+    <!-- <node name="rviz" pkg="rviz" type="rviz"/> -->
+
+
+</launch>
